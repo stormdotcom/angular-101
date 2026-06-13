@@ -16,8 +16,8 @@ export const ROUTING_BASICS_ROUTES: Routes = [
         children: [
           {
             path: ':sectionId',
-   loadComponent: () => import('./routing-basics-detail-section.component')
-  .then(m => m.RoutingBasicsDetailSectionComponent),
+            loadComponent: () => import('./routing-basics-detail-section.component')
+              .then(m => m.RoutingBasicsDetailSectionComponent),
           },
         ]
       },

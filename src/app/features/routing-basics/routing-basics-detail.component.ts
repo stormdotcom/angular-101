@@ -6,7 +6,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
  * route params are bound directly to @Input() — no ActivatedRoute boilerplate.
  */
 @Component({
-  selector: 'app-routing-basics-detail-section',
+  selector: 'app-routing-basics-detail',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports:[RouterOutlet, RouterLink, RouterLinkActive],
