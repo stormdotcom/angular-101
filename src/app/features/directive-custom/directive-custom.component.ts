@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { TopicHeaderComponent } from '../../shared/components/topic-header/topic-header.component';
 import { HighlightDirective } from '../../shared/directives/highlight.directive';
+import { DisableWhileDirective } from '../../shared/directives/disable-while.directive';
 
 @Component({
   selector: 'app-directive-custom',
   standalone: true,
-  imports: [TopicHeaderComponent, HighlightDirective],
+  imports: [TopicHeaderComponent, HighlightDirective, DisableWhileDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <app-topic-header
@@ -55,6 +56,7 @@ import { HighlightDirective } from '../../shared/directives/highlight.directive'
         -->
         <button
           type="button"
+          [appDisableWhile]="busy()"
           class="ml-3 px-4 py-2 rounded bg-sky-600 hover:bg-sky-500"
           (click)="onSave()"
         >Save (should disable while busy)</button>
