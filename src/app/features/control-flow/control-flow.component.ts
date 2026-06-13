@@ -29,6 +29,18 @@ interface Fruit { id: number; name: string; color: 'red' | 'green' | 'yellow'; }
         } @else {
           <p class="mt-2 text-rose-300">Hidden — show() is false.</p>
         }
+            <button
+          type="button"
+          class="px-3 py-1.5 rounded"
+          [class.bg-green-700]="secondShow()"
+          [class.bg-sky-700]="!secondShow()"
+          (click)="secondShow.set(!secondShow())"
+        >Toggle Second Show</button>
+        @if (secondShow()) {
+          <p> Second show is {{secondShow()}}.</p>
+        } @else {
+          <p> Second Show is  {{secondShow()}}
+        }
       </div>
 
       <div>
@@ -92,6 +104,7 @@ interface Fruit { id: number; name: string; color: 'red' | 'green' | 'yellow'; }
 })
 export class ControlFlowComponent {
   readonly show = signal(true);
+  readonly secondShow = signal(false);
   readonly status = signal<'idle' | 'loading' | 'error' | 'done'>('idle');
 
   readonly fruits = signal<Fruit[]>([
