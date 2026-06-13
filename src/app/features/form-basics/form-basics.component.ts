@@ -88,6 +88,18 @@ import { TopicHeaderComponent } from '../../shared/components/topic-header/topic
         <input formControlName="dob" type="date"
           class="px-3 py-2 rounded bg-slate-800 border border-slate-700" />
       </div>
+      
+      <div>
+        <label class="block text-sm text-slate-300 mb-1">Cell Number</label>
+        <input formControlName="phone" type="number"
+          class="px-3 py-2 rounded bg-slate-800 border border-slate-700" />
+          <!-- validation -->
+          <div *ngIf="form.get('phone')?.invalid && form.get('phone')?.touched" class="text-red-500 text-sm mt-1">
+            <div *ngIf="form.get('phone')?.errors?.['required']">Phone number is required.</div>
+            <div *ngIf="form.get('phone')?.errors?.['pattern']">Invalid phone number format.</div>
+          </div>
+      </div>
+
 
       <!--
         ## EXERCISE — phone field
@@ -128,6 +140,7 @@ export class FormBasicsComponent {
     acceptTerms: false,
     notifications: true,
     dob: '',
+    phone: '',
   });
 
   readonly form = this.fb.group({
@@ -140,6 +153,7 @@ export class FormBasicsComponent {
     acceptTerms: [false, Validators.requiredTrue],
     notifications: [true],
     dob: [''],
+    phone: ['', [Validators.required, Validators.pattern(/^[+()0-9 -]{7,}$/)]],
   });
 
   readonly submitted = signal<unknown | null>(null);

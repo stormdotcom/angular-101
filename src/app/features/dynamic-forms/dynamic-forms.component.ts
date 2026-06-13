@@ -81,6 +81,7 @@ export class DynamicFormsComponent {
   readonly form = this.fb.group({
     phones: this.fb.array<FormGroup<PhoneFormShape>>([
       this.buildPhone('home', ''),
+      this.buildPhone('office', '0471'),
     ]),
   });
 
