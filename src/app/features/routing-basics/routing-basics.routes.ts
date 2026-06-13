@@ -13,6 +13,13 @@ export const ROUTING_BASICS_ROUTES: Routes = [
       {
         path: 'detail/:id',
         loadComponent: () => import('./routing-basics-detail.component').then(m => m.RoutingBasicsDetailComponent),
+        children: [
+          {
+            path: ':sectionId',
+   loadComponent: () => import('./routing-basics-detail-section.component')
+  .then(m => m.RoutingBasicsDetailSectionComponent),
+          },
+        ]
       },
     ],
   },
