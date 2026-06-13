@@ -1,11 +1,11 @@
 <div class="p-4">
   <h1 class="text-2xl font-bold mb-4">Components Basics</h1>
   <p class="mb-2">This is the parent component. It will display the child component below.</p>
-  <p> Value from Child Got it {{lastValue}}</p>
+  <p class="text-red-200"> Value from Child Got it {{lastValue}}</p>
   <app-child 
    [score]="score"
    (changeScore)="changeScore()"
-   (valueChange)="onChildValueChange( $event)"
+   (changeValue)="onChildValueChange( $event)"
 
   ></app-child>
 </div>
