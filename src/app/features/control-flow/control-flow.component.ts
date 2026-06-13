@@ -94,7 +94,7 @@ interface Fruit { id: number; name: string; color: 'red' | 'green' | 'yellow'; }
               2. Replace fruits() below with filteredFruits().
               3. Add an @empty branch that says "No fruits match.".
           -->
-          @for (f of fruits(); track f.id) {
+          @for (f of filteredFruits(); track f.id) {
             <li>{{ f.name }} ({{ f.color }})</li>
           }
         </ul>
@@ -119,4 +119,8 @@ export class ControlFlowComponent {
 
   // Reference computed pattern for the exercise:
   readonly _hint = computed(() => this.fruits().length); // delete in your solution if you want
+  readonly filteredFruits = computed(() => {
+    const filter = this.colorFilter();
+    return filter ? this.fruits().filter(f => f.color === filter) : this.fruits();
+  });
 }
