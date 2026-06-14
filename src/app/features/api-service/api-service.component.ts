@@ -2,11 +2,12 @@ import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@ang
 import { User } from '../../core/models/user.model';
 import { UserService } from '../../core/services/user.service';
 import { TopicHeaderComponent } from '../../shared/components/topic-header/topic-header.component';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-api-service',
   standalone: true,
-  imports: [TopicHeaderComponent],
+  imports: [TopicHeaderComponent, JsonPipe ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <app-topic-header
@@ -43,7 +44,7 @@ import { TopicHeaderComponent } from '../../shared/components/topic-header/topic
       }
 
       @if (created()) {
-        <p class="text-emerald-300">Created user id={{ created()?.id }} (jsonplaceholder fakes the write).</p>
+        <pre class="text-emerald-300 bg-slate-900 p-3 rounded tex|  t-sm overflow-auto"><code>{{ created() | json }}</code></pre>
       }
     </section>
   `,
