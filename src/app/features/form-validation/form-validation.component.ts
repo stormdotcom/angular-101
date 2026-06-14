@@ -17,6 +17,10 @@ function passwordMatch(group: AbstractControl): ValidationErrors | null {
   return a === b ? null : { passwordsMustMatch: true };
 }
 
+function noSpaces(control: AbstractControl): ValidationErrors | null {
+  return /\s/.test(control.value) ? { hasSpaces: true } : null;
+}
+
 /**
  * Async validator factory — hits a (fake) service to check whether the
  * username is taken. Returns null when free.
@@ -128,7 +132,7 @@ export class FormValidationComponent {
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
     }, { validators: [passwordMatch] }),
-    nickname: [''],
+    nickname: ['',[Validators.required, noSpaces]],
   });
 
   readonly submitTried = signal(false);

@@ -39,7 +39,11 @@ interface PhoneFormShape {
               <label class="block text-xs text-slate-300 mb-1">Number</label>
               <input formControlName="number" placeholder="+91 …"
                 class="w-full px-2 py-1.5 rounded bg-slate-800 border border-slate-700" />
+                    @if (group.get('number')?.invalid && group.get('number')?.touched) {
+              <p class="text-xs text-rose-400 mt-1">Please enter a valid phone number.</p>
+            }
             </div>
+        
 
             <!--
               ## EXERCISE — remove + per-row validation
@@ -51,8 +55,8 @@ interface PhoneFormShape {
                 3. Disable the Submit button if any row is invalid.
             -->
             <button type="button"
-              class="px-3 py-2 rounded bg-rose-700/40 text-rose-200 cursor-not-allowed"
-              disabled
+              class="px-3 py-2 rounded bg-rose-700/40 text-rose-200 cursor-pointer hover:bg-rose-700/70 disabled:cursor-not-allowed disabled:bg-rose-700/20"
+              (click)="removePhone(i)"
               title="TODO: wire to removePhone(i)">Remove</button>
           </fieldset>
         }
@@ -81,7 +85,6 @@ export class DynamicFormsComponent {
   readonly form = this.fb.group({
     phones: this.fb.array<FormGroup<PhoneFormShape>>([
       this.buildPhone('home', ''),
-      this.buildPhone('office', '0471'),
     ]),
   });
 
@@ -94,7 +97,8 @@ export class DynamicFormsComponent {
   private buildPhone(label = '', number = ''): FormGroup<PhoneFormShape> {
     return this.fb.group({
       label: this.fb.nonNullable.control(label, Validators.required),
-      number: this.fb.nonNullable.control(number),
+      number: this.fb.nonNullable.control(number, [Validators.required,
+      Validators.pattern(/^[+()0-9 -]{7,}$/)]),
     });
   }
 

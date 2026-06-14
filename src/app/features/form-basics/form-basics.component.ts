@@ -90,8 +90,8 @@ import { TopicHeaderComponent } from '../../shared/components/topic-header/topic
       </div>
       
       <div>
-        <label class="block text-sm text-slate-300 mb-1">Cell Number</label>
-        <input formControlName="phone" type="number"
+        <label class="block text-sm text-slate-300 mb-1">Phone Number</label>
+        <input formControlName="phone" type="tel"
           class="px-3 py-2 rounded bg-slate-800 border border-slate-700" />
           <!-- validation -->
           <div *ngIf="form.get('phone')?.invalid && form.get('phone')?.touched" class="text-red-500 text-sm mt-1">
